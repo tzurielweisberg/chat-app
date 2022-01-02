@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const socketio = require('socket.io');
 const Filter = require('bad-words');
+
 const { generateMessage, generatelocationMessage } = require('./utils/messages');
 const {
   addUser,
