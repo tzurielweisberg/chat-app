@@ -23,5 +23,5 @@ jobs:
           AQUA_URL: ${{ secrets.AQUA_URL }}
           CSPM_URL: ${{ secrets.CSPM_URL }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          TRIGGERED_BY: 'PR'
+          TRIGGERED_BY: 'PUSH'
           TRIVY_RUN_AS_PLUGIN: 'aqua'
