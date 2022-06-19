@@ -16,7 +16,6 @@ jobs:
         with:
           scan-type: 'vuln'
           hide-progress: false
-          format: 'table'
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
