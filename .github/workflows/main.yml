@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Set selected color
         run: env
+      - name: hello
+        run: echo "bye"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run Trivy vulnerability scanner in IaC mode test
