@@ -9,6 +9,8 @@ jobs:
     name: Build
     runs-on: ubuntu-18.04
     steps:
+      - name: Set selected color
+        run: env
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run Trivy vulnerability scanner in IaC mode test
