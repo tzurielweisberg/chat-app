@@ -12,7 +12,7 @@ jobs:
       - name: Set selected color
         run: env
       - name: hello
-        run: echo  ${{ labels }}
+        run: echo  test
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run Trivy vulnerability scanner in IaC mode test
