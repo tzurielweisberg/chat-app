@@ -22,6 +22,8 @@ jobs:
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+          AQUA_URL: ${{ secrets.AQUA_URL }}
+          CSPM_URL: ${{ secrets.CSPM_URL }}
           TRIVY_RUN_AS_PLUGIN: 'aqua'
           TRIGGERED_BY: 'PR'
           GITHUB_TOKEN: ${{ github.token }}
