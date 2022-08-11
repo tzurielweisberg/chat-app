@@ -9,23 +9,19 @@ jobs:
     name: Build
     runs-on: ubuntu-18.04
     steps:
-      - name: Set selected color
-        run: env
-      - name: hello
-        run: echo  test
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Run Trivy vulnerability scanner in IaC mode test
+
+      - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'vuln'
+          scan-type: 'fs'
+          security-checks: 'vuln,config,secret'
           hide-progress: false
           format: 'table'
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
-          AQUA_URL: ${{ secrets.AQUA_URL }}
-          CSPM_URL: ${{ secrets.CSPM_URL }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          TRIGGERED_BY: 'PR'
           TRIVY_RUN_AS_PLUGIN: 'aqua'
+          TRIGGERED_BY: 'PR'
+          GITHUB_TOKEN: ${{ github.token }}
