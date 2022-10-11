@@ -2,7 +2,7 @@ name: Aqua
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   aqua:
     name: trivy
