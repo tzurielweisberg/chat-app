@@ -15,6 +15,7 @@ jobs:
     steps:
       - checkout
       - run: |
+         printenv
          export AQUA_KEY=$AQUA_KEY
          export AQUA_SECRET=$AQUA_SECRET
          export trivyVersion=0.32.0
