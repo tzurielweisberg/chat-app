@@ -14,9 +14,14 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+      - run: |
+         export AQUA_KEY=$AQUA_KEY
+         export AQUA_SECRET=$AQUA_SECRET
+         export trivyVersion=0.32.0
+         export TRIVY_RUN_AS_PLUGIN=aqua
+         curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
+         ./trivy fs --security-checks config,vuln,secret .
+          
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
