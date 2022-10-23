@@ -1,10 +1,10 @@
-
 version: 2.1
 
 jobs:
-  trivy-aqua:
+  aqua:
+    
     steps:
-      - checkout
+      - checkout # check out the code in the project directory
       - run: |
          printenv
          export trivyVersion=0.32.0
@@ -12,8 +12,10 @@ jobs:
          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
          ./trivy plugin install github.com/tzurielweisberg/plugin-version
          ./trivy fs --security-checks config,vuln,secret .
+
 workflows:
-  trivy-aqau-workflow:
+  my-workflow:
     jobs:
-      - trivy-aqua
+      - aqua
+
 
