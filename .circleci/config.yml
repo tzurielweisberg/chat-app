@@ -1,10 +1,14 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  aqua:
+  say-hello:
     
     steps:
-      - checkout # check out the code in the project directory
+      - checkout
       - run: |
          printenv
          export trivyVersion=0.32.0
@@ -12,10 +16,10 @@ jobs:
          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
          ./trivy plugin install github.com/tzurielweisberg/plugin-version
          ./trivy fs --security-checks config,vuln,secret .
-
+         
 workflows:
-  my-workflow:
+  say-hello-workflow:
     jobs:
-      - aqua
+      - say-hello
 
 
