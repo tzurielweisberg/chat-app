@@ -1,9 +1,9 @@
 version: 2.1
 
 jobs:
-  say-hello:
-    docker:
-      - image: cimg/base:stable
+  aqua-trivy:
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
       - run: |
@@ -15,6 +15,6 @@ jobs:
           ./trivy fs --security-checks config,vuln,secret .
           
 workflows:
-  say-hello-workflow:
+  aqua-trivy-workflow:
     jobs:
-      - say-hello
+      - aqua-trivy
