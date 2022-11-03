@@ -11,6 +11,7 @@ pipeline {
             string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]        
             ) {
                 sh '''
+                printenv
                 export TRIVY_RUN_AS_PLUGIN=aqua
                 export trivyVersion=0.32.0
                 export AQUA_URL=https://api-dev.aquasec.com
