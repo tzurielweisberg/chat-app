@@ -11,6 +11,8 @@ pipeline {
             string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]        
             ) {
                 sh '''
+                git branch -a
+                git diff --name-status origin/master
                 printenv
                 export TRIVY_RUN_AS_PLUGIN=aqua
                 export trivyVersion=0.32.0
@@ -18,7 +20,7 @@ pipeline {
                 export CSPM_URL=https://stage.api.cloudsploit.com
                 curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion} 
                 ./trivy plugin install github.com/tzurielweisberg/plugin-version
-                ./trivy fs --security-checks config,vuln,secret .
+                ./trivy fs --debug --security-checks config,vuln,secret .
   '''
  }
         }
