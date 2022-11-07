@@ -1,30 +1,26 @@
-pipeline {
-    agent {
-        label 'master'
-    }
-    stages {
-    stage('Scan') {
-        steps {
-          withCredentials([
-            string(credentialsId: 'DEV_AQUA_KEY', variable: 'AQUA_KEY'),
-            string(credentialsId: 'DEV_AQUA_SECRET', variable: 'AQUA_SECRET'),
-            string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]        
-            ) {
-                sh '''
-                git branch -a
-                git checkout origin/tzurielweisberg-patch-24
-                git diff --name-status origin/master
-                printenv
-                export TRIVY_RUN_AS_PLUGIN=aqua
-                export trivyVersion=0.32.0
-                export AQUA_URL=https://api-dev.aquasec.com
-                export CSPM_URL=https://stage.api.cloudsploit.com
-                curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion} 
-                ./trivy plugin install github.com/tzurielweisberg/plugin-version
-                ./trivy fs --debug --security-checks config,vuln,secret .
-  '''
- }
-        }
-    }
-    }
-}
+name: "aqua"
+repository: github.com/aquasecurity/trivy-plugin-aqua
+version: "v0.85.3-jengithub"
+usage: trivy aqua <srcPath>
+description: A Trivy plugin that sends results to Aqua.
+platforms:
+  - selector: # optional
+      os: linux
+      arch: amd64
+    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.85.3-jengithub/linux_amd64_v0.85.3-jengithub.tar.gz
+    bin: ./aqua
+  - selector:
+      os: linux
+      arch: arm64
+    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.85.3-jengithub/linux_arm64_v0.85.3-jengithub.tar.gz
+    bin: ./aqua
+  - selector:
+      os: darwin
+      arch: amd64
+    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.85.3-jengithub/darwin_amd64_v0.85.3-jengithub.tar.gz
+    bin: ./aqua
+  - selector:
+      os: darwin
+      arch: arm64
+    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.85.3-jengithub/darwin_arm64_v0.85.3-jengithub.tar.gz
+    bin: ./aqua
