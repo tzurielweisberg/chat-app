@@ -11,8 +11,6 @@ pipeline {
             string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]        
             ) {
                 sh '''
-                git branch -a
-                git diff --name-status origin/master
                 printenv
                 export TRIVY_RUN_AS_PLUGIN=aqua
                 export trivyVersion=0.32.0
