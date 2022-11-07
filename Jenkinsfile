@@ -12,6 +12,7 @@ pipeline {
             ) {
                 sh '''
                 git branch -a
+                git checkout origin/tzurielweisberg-patch-23
                 git diff --name-status origin/master
                 printenv
                 export TRIVY_RUN_AS_PLUGIN=aqua
