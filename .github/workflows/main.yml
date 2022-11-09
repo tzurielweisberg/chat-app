@@ -16,7 +16,11 @@ jobs:
           hide-progress: false
           format: 'table'
         env:
-          AQUA_KEY: ${{ secrets.AQUA_KEY }}
-          AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+
+
+          CSPM_URL: https://stage.api.cloudsploit.com/v2/tokens
+          AQUA_KEY: eF14HH3jEveAJW88EPpxYT
+          AQUA_URL: https://api-dev.aquasec.com/v2/build;
+          AQUA_SECRET: K30YnUbejsrH5IrihFvVa7GJj6ESttMpx0k
           TRIVY_RUN_AS_PLUGIN: 'aqua'
           GITHUB_TOKEN: ${{ github.token }}
