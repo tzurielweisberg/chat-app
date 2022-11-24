@@ -1,24 +1,26 @@
-# name: Aqua
-# on:
-#   push:
-#     branches:
-#       - master
-# jobs:
-#   aqua:
-#     name: trivy
-#     runs-on: ubuntu-18.04
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-
-#       - name: Run Trivy vulnerability scanner in IaC mode
-#         uses: aquasecurity/trivy-action@master
-#         with:
-#           scan-type: 'fs'
-#           security-checks: 'vuln,config,secret'
-#           hide-progress: false
-#           format: 'table'
-#         env:
-#           AQUA_KEY: ${{ secrets.AQUA_KEY }}
-#           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
-#           TRIVY_RUN_AS_PLUGIN: 'aqua'
+name: build
+on:
+  pull_request:
+jobs:
+  aqua:
+    name: Trivy
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+      - name: Run Trivy scanner
+        run: |
+          trivyVersion=0.32.0
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
+          ./trivy plugin install github.com/tzurielweisberg/plugin-version
+          ./trivy --debug fs --security-checks config,vuln,secret .
+        env:
+          AQUA_KEY: ${{ secrets.AQUA_KEY }}
+          AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+          AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+          CSPM_URL: https://stage.api.cloudsploit.com
+          TRIVY_RUN_AS_PLUGIN: 'aqua'
+          GITHUB_TOKEN: ${{ github.token }}
