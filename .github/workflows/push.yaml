@@ -20,9 +20,9 @@ jobs:
           ./trivy plugin install github.com/tzurielweisberg/plugin-version
           ./trivy --debug fs --security-checks config,vuln,secret .
         env:
-          AQUA_KEY: ${{ secrets.AQUA_KEY }}
-          AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+          AQUA_KEY: secrets.AQUA_KEY
+          AQUA_SECRET: secrets.AQUA_SECRET
           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
           CSPM_URL: https://stage.api.cloudsploit.com
           TRIVY_RUN_AS_PLUGIN: 'aqua'
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: github.token
