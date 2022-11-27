@@ -10,9 +10,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x'
       - name: Run Trivy scanner
         run: |
           trivyVersion=0.32.0
