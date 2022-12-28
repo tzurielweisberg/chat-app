@@ -1,14 +1,14 @@
-# name: Aqua
-# on: pull_request
-# jobs:
-#   aqua:
-#     name: trivy
-#     runs-on: ubuntu-18.04
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+name: Aqua
+on: pull_request
+jobs:
+  aqua:
+    name: trivy
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#       - name: Run Trivy vulnerability scanner in IaC mode
+      - name: Run Trivy vulnerability scanner in IaC mode
 #         uses: aquasecurity/trivy-action@master
 #         with:
 #           scan-type: 'fs'
@@ -16,11 +16,19 @@
 #           hide-progress: false
 #           format: 'table'
 #           # Customizing which severities are scanned for is done by adding the following flag: severity: 'UNKNOWN','LOW','MEDIUM','HIGH','CRITICAL'
-#         env:
-#           AQUA_KEY: eF14HH3jEveAJW88EPpxYT
-#           AQUA_SECRET: K30YnUbejsrH5IrihFvVa7GJj6ESttMpx0k
-#           TRIVY_RUN_AS_PLUGIN: 'aqua'
-#           GITHUB_TOKEN: ${{ github.token }}
-#           AQUA_URL: https://api-dev.aquasec.com
-#           CSPM_URL: https://stage.api.cloudsploit.com
+          
+ 
+        run: |
+          trivyVersion=0.32.0
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
+          ./trivy plugin install github.com/tzurielweisberg/plugin-version
+          ./trivy --debug fs  --security-checks config,vuln,secret .
+
+        env:
+          AQUA_KEY: eF14HH3jEveAJW88EPpxYT
+          AQUA_SECRET: K30YnUbejsrH5IrihFvVa7GJj6ESttMpx0k
+          TRIVY_RUN_AS_PLUGIN: 'aqua'
+          GITHUB_TOKEN: ${{ github.token }}
+          AQUA_URL: https://api-dev.aquasec.com
+          CSPM_URL: https://stage.api.cloudsploit.com
 
