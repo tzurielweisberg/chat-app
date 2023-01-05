@@ -17,7 +17,7 @@ pipeline {
                 export AQUA_URL=https://api-dev.aquasec.com
                 export CSPM_URL=https://stage.api.cloudsploit.com
                 curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion} 
-                ./trivy plugin install github.com/tzurielweisberg/plugin-version
+                ./trivy plugin install github.com/Mor-s-organization/trivy-plugin-version
                 ./trivy fs --debug --security-checks config,vuln,secret .
   '''
  }
