@@ -32,5 +32,5 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           AQUA_URL: https://api-dev.aquasec.com
           CSPM_URL: https://stage.api.cloudsploit.com
-          TRIVY_SCANNERS: config,secret
+          TRIVY_SECURITY_CHECKS: config,secret
 
