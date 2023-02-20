@@ -1,20 +1,20 @@
-# version: 2.1
+version: 2.1
 
-# jobs:
-#   aqua-trivy:
-#     machine:
-#       image: ubuntu-2004:202010-01
-#     steps:
-#       - checkout
-#       - run: |
-#           export trivyVersion=0.32.0
-#           export TRIVY_RUN_AS_PLUGIN=aqua
-#           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
-#           ./trivy plugin install github.com/tzurielweisberg/plugin-version
-#           ./trivy fs --security-checks config,vuln,secret .
-#           # Customizing which severities are scanned for is done by adding the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+jobs:
+  aqua-trivy:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run: |
+          export trivyVersion=0.32.0
+          export TRIVY_RUN_AS_PLUGIN=aqua
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
+          ./trivy plugin install github.com/tzurielweisberg/plugin-version
+          ./trivy fs --security-checks config,vuln,secret .
+          # Customizing which severities are scanned for is done by adding the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
 
-# workflows:
-#   aqua-trivy-workflow:
-#     jobs:
-#       - aqua-trivy
+workflows:
+  aqua-trivy-workflow:
+    jobs:
+      - aqua-trivy
