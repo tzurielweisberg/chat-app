@@ -16,6 +16,8 @@ jobs:
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
           #./trivy plugin install github.com/tzurielweisberg/plugin-version
           ./trivy  fs --debug  .
+          echo $?
+          echo hello
         env:
           AQUA_KEY: ${{secrets.AQUA_KEY}}
           AQUA_SECRET: ${{secrets.AQUA_SECRET}}
