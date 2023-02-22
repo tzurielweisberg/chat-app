@@ -14,7 +14,7 @@ jobs:
         run: |
           trivyVersion=0.32.0
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
-          ./trivy plugin install github.com/tzurielweisberg/plugin-version
+          #./trivy plugin install github.com/tzurielweisberg/plugin-version
           ./trivy  fs --debug  .
         env:
           AQUA_KEY: ${{secrets.AQUA_KEY}}
@@ -23,5 +23,5 @@ jobs:
           CSPM_URL: https://stage.api.cloudsploit.com
           TRIVY_RUN_AS_PLUGIN: 'aqua'
           GITHUB_TOKEN: ${{ github.token }}
-          TRIVY_SCANNERS: config,secret
+          TRIVY_SECURITY_CHECKS: config,secret
 
