@@ -13,6 +13,7 @@ jobs:
       - name: Run Trivy scanner
         run: |
           printenv
+          echo here
           trivyVersion=0.37.2
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
           #./trivy plugin install github.com/tzurielweisberg/plugin-version
