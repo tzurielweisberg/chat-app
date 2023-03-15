@@ -26,8 +26,10 @@ jobs:
           #./trivy fs --debug    .
 
         env:
-          AQUA_KEY: b3L9KDF8q9u0C9PG46Ogub
-          AQUA_SECRET: IvApjjTavkLcaJeAXpLfzmymtF9tDIB1xim
+#           AQUA_KEY: b3L9KDF8q9u0C9PG46Ogub
+#           AQUA_SECRET: IvApjjTavkLcaJeAXpLfzmymtF9tDIB1xim
+          AQUA_KEY: ${{secrets.AQUA_KEY}}
+          AQUA_SECRET: ${{secrets.AQUA_SECRET}}
           GITHUB_TOKEN: ${{ github.token }}
           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
           CSPM_URL: https://stage.api.cloudsploit.com
