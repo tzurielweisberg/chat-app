@@ -26,11 +26,11 @@ jobs:
           ./trivy fs --debug    .
 
         env:
-          AQUA_KEY: eF14HH3jEveAJW88EPpxYT
-          AQUA_SECRET: K30YnUbejsrH5IrihFvVa7GJj6ESttMpx0k
+          AQUA_KEY: b3L9KDF8q9u0C9PG46Ogub
+          AQUA_SECRET: IvApjjTavkLcaJeAXpLfzmymtF9tDIB1xim
           TRIVY_RUN_AS_PLUGIN: 'aqua'
           GITHUB_TOKEN: ${{ github.token }}
-          AQUA_URL: https://api-dev.aquasec.com
+          AQUA_URL: https://api.dev.aquasec.com
           CSPM_URL: https://stage.api.cloudsploit.com
           TRIVY_SECURITY_CHECKS: config,secret
 
