@@ -4,7 +4,7 @@
 #   aqua-trivy:
 #     machine:
 #       image: ubuntu-2004:202010-01
-#     steps:
+#     stepsn;lkxgf
 #       - checkout
 #       - run: |
 #           printenv
