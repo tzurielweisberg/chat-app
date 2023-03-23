@@ -1,8 +1,18 @@
-name: build
+name: build windows
+env:
+          AQUA_KEY: ${{secrets.AQUA_KEY}}
+          AQUA_SECRET: ${{secrets.AQUA_SECRET}}
+          AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+          CSPM_URL: https://stage.api.cloudsploit.com
+          TRIVY_RUN_AS_PLUGIN: 'aqua'
+          GITHUB_TOKEN: ${{ github.token }}
+          TRIVY_SECURITY_CHECKS: config,secret
+# on:
+#   push:
+#     branches:
+#       - master
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 jobs:
   aqua:
     name: Trivy
@@ -12,17 +22,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Run Trivy scanner
         run: |
-          curl -sLo trivy.zip https://github.com/aquasecurity/trivy/releases/download/v/trivy__windows-64bit.zip 
+          curl -sLo trivy.zip https://github.com/aquasecurity/trivy/releases/download/v0.38.3/trivy_0.38.3_windows-64bit.zip 
           tar -xzf trivy.zip
           ./trivy plugin install github.com/tzurielweisberg/plugin-version
           ./trivy  fs --debug  .
           echo $?
           echo hello
-        env:
-          AQUA_KEY: ${{secrets.AQUA_KEY}}
-          AQUA_SECRET: ${{secrets.AQUA_SECRET}}
-          AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
-          CSPM_URL: https://stage.api.cloudsploit.com
-          TRIVY_RUN_AS_PLUGIN: 'aqua'
-          GITHUB_TOKEN: ${{ github.token }}
-          TRIVY_SECURITY_CHECKS: config,secret
+        
