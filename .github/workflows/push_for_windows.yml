@@ -12,8 +12,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Run Trivy scanner
         run: |
-          printenv
-          echo here
           curl -sLo trivy.zip https://github.com/aquasecurity/trivy/releases/download/v/trivy__windows-64bit.zip 
           tar -xzf trivy.zip
           ./trivy plugin install github.com/tzurielweisberg/plugin-version
