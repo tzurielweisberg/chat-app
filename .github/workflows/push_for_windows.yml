@@ -25,7 +25,7 @@ jobs:
           curl -sLo trivy.zip https://github.com/aquasecurity/trivy/releases/download/v0.38.3/trivy_0.38.3_windows-64bit.zip 
           tar -xzf trivy.zip
           ./trivy plugin install github.com/tzurielweisberg/plugin-version
-          ./trivy  fs --debug  .
+          TRIVY_RUN_AS_PLUGIN: 'aqua' ./trivy  fs --debug  .
           echo $?
           echo hello
         
