@@ -20,12 +20,35 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Run Trivy scanner
-        run: |
-          curl -sLo trivy.zip https://github.com/aquasecurity/trivy/releases/download/v0.38.3/trivy_0.38.3_windows-64bit.zip 
-          tar -xzf trivy.zip
-          ./trivy plugin install github.com/tzurielweisberg/plugin-version
-          ./trivy aqua  fs --debug  .
-          echo $?
-          echo hello
+      - name: Run Aqua scanner
+        uses: docker://aquasec/aqua-scanner
+        with:
+          args: trivy aqua fs --security-checks config,vuln,secret .
+#       - name: Run Trivy scanner
+#         run: |
+#           curl -sLo trivy.zip https://github.com/aquasecurity/trivy/releases/download/v0.38.3/trivy_0.38.3_windows-64bit.zip 
+#           tar -xzf trivy.zip
+#           ./trivy plugin install github.com/tzurielweisberg/plugin-version
+#           ./trivy aqua  fs --debug  .
+#           echo $?
+#           echo hello
+          
+
+
+# - name: Run Aqua scanner
+#         uses: docker://aquasec/aqua-scanner
+#         with:
+#           args: trivy fs --security-checks config,vuln,secret .
+#           # To customize which severities to scan for, add the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+#           # To enable SAST scanning, add: --sast
+#           # To enable npm/dotnet non-lock file scanning, add: --package-json / --dotnet-proj
+#         env:
+#           AQUA_KEY: ${{ secrets.AQUA_KEY }}
+#           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+#           GITHUB_TOKEN: ${{ github.token }}
+#           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+#           CSPM_URL: https://stage.api.cloudsploit.com
+#           TRIVY_RUN_AS_PLUGIN: 'aqua'
+
+
         
