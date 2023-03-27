@@ -21,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: test 
-        uses: docker://mcr.microsoft.com/dotnet/sdk:6.0
+        uses: docker://mcr.microsoft.com/dotnet/sdk
         with:
           args: dotnet --version
 #       - name: Run Aqua scanner
