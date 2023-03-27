@@ -14,16 +14,27 @@ env:
 on:
   workflow_dispatch:
 jobs:
-  aqua:
-    name: Trivy
-    runs-on: windows-latest # ubuntu-latest #
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: test 
-        uses: docker://mcr.microsoft.com/dotnet/sdk
-        with:
-          args: dotnet --version
+    job-win:
+    
+          runs-on: windows-latest
+          container: 
+                    image: mcr.microsoft.com/dotnet/sdk:6.0
+          steps:
+                    - name: Checkout code
+                      run: dotnet --version
+
+#   aqua:
+#     name: Trivy
+#     runs-on: windows-latest # ubuntu-latest #
+#     container: 
+#           image: mcr.microsoft.com/dotnet/sdk
+#     with:
+#           args: dotnet --version
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: test 
+       
 #       - name: Run Aqua scanner
 #         uses: docker://aquasec/aqua-scanner
 #         with:
