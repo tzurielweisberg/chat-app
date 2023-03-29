@@ -6,8 +6,8 @@ on:
 jobs:
   aqua:
     name: Trivy
-    #runs-on: ubuntu-18.04
-    runs-on: windows-latest
+    runs-on: ubuntu-18.04
+   # runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
