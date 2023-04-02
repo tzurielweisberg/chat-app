@@ -1,4 +1,4 @@
-name: Aqua
+name: Aqua-win
 on:
   workflow_dispatch:
 jobs:
