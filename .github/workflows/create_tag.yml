@@ -1,8 +1,6 @@
 name: Create/update tag
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 jobs:
   create-tagas:
     runs-on: ubuntu-latest
