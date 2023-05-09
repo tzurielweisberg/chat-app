@@ -22,9 +22,8 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ github.token }}
-          branch: "aaa${{github.ref_name}}"
+          branch: ${{github.ref_name}}
           title: "Update Plugin Artifacts Links for ${{github.ref_name}}"
           delete-branch: false          
-          base: master
           add-paths: |
             plugin.yaml
