@@ -1,32 +1,32 @@
-name: build
-on:
-  push:
-    branches:
-      - master
-jobs:
-  aqua:
-    name: Trivy
-    runs-on: ubuntu-latest
-   # runs-on: windows-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Run Trivy scanner
-        run: |
-          printenv
-          echo here
-          trivyVersion=0.39.1
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
-          #./trivy plugin install github.com/tzurielweisberg/plugin-version
-          ./trivy  fs --skip-policy-exit-code --debug  .
-          echo $?
-          echo hello
-        env:
-          AQUA_KEY: ${{secrets.AQUA_KEY}}
-          AQUA_SECRET: ${{secrets.AQUA_SECRET}}
-          AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
-          CSPM_URL: https://stage.api.cloudsploit.com
-          TRIVY_RUN_AS_PLUGIN: 'aqua'
-          GITHUB_TOKEN: ${{ github.token }}
-          TRIVY_SECURITY_CHECKS: config,secret
+# name: build
+# on:
+#   push:
+#     branches:
+#       - master
+# jobs:
+#   aqua:
+#     name: Trivy
+#     runs-on: ubuntu-latest
+#    # runs-on: windows-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: Run Trivy scanner
+#         run: |
+#           printenv
+#           echo here
+#           trivyVersion=0.39.1
+#           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
+#           #./trivy plugin install github.com/tzurielweisberg/plugin-version
+#           ./trivy  fs --skip-policy-exit-code --debug  .
+#           echo $?
+#           echo hello
+#         env:
+#           AQUA_KEY: ${{secrets.AQUA_KEY}}
+#           AQUA_SECRET: ${{secrets.AQUA_SECRET}}
+#           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+#           CSPM_URL: https://stage.api.cloudsploit.com
+#           TRIVY_RUN_AS_PLUGIN: 'aqua'
+#           GITHUB_TOKEN: ${{ github.token }}
+#           TRIVY_SECURITY_CHECKS: config,secret
 
