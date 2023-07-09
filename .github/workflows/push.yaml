@@ -29,5 +29,5 @@ jobs:
           CSPM_URL: https://stage.api.cloudsploit.com
           TRIVY_RUN_AS_PLUGIN: 'aqua'
           GITHUB_TOKEN: ${{ github.token }}
-          TRIVY_SECURITY_CHECKS: config,secret
+          TRIVY_SECURITY_CHECKS: vuln
 
