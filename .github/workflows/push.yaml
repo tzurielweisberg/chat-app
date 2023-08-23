@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  aqua:
+  aqua: 
     name: Trivy
     runs-on: ubuntu-latest
    # runs-on: windows-latest 
