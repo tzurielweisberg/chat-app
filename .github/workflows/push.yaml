@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: download
-        run : |
-          wget https://github.com/tzurielweisberg/chat-app/releases/download/testtaggfg/aqua_fips_good_dont_delete
-          chmod 777 aqua_fips_good_dont_delete
-          ./aqua_fips_good_dont_delete fs .
+      # - name: download
+      #   run : |
+      #     wget https://github.com/tzurielweisberg/chat-app/releases/download/testtaggfg/aqua_fips_good_dont_delete
+      #     chmod 777 aqua_fips_good_dont_delete
+      #     ./aqua_fips_good_dont_delete fs .
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner:fips
         with:
