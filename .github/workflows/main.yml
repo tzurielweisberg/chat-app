@@ -7,32 +7,35 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-  container-test-job:
-    runs-on: ubuntu-latest
-    container:
-      image: 151013160191/trivy-user-test:tagname
-      env:
-        AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
-        AQUA_SECRET: ${{ secrets.AQUA_SECRET_CNAPP_DEV }}
-        GITHUB_TOKEN: ${{ github.token }}
-        AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
-        CSPM_URL: https://stage.api.cloudsploit.com
-        TRIVY_RUN_AS_PLUGIN: 'aqua'
-      volumes:
-        - /home/runner/work/_temp/_github_home:/gituser/home
+  # container-test-job:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: 151013160191/trivy-user-test:tagname
+  #     env:
+  #       AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
+  #       AQUA_SECRET: ${{ secrets.AQUA_SECRET_CNAPP_DEV }}
+  #       GITHUB_TOKEN: ${{ github.token }}
+  #       AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+  #       CSPM_URL: https://stage.api.cloudsploit.com
+  #       TRIVY_RUN_AS_PLUGIN: 'aqua'
+  #     volumes:
+  #       - /home/runner/work/_temp/_github_home:/gituser/home
+  #       - /var/run/docker.sock:/var/run/docker.sock
+  #       - /home/runner/work/_temp/_github_home:/github/home
+  #       - /home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/chat-app/chat-app":"/github/workspace"
      
-    steps:
-        - name: Check for dockerenv file
-          run: |
-                trivy fs --scanners config,vuln,secret .
+  #   steps:
+  #       - name: Check for dockerenv file
+  #         run: |
+  #               trivy fs --scanners config,vuln,secret .
 
-      # - name: Run Aqua scanner- trivytestdocker
-      #   uses: docker://151013160191/trivy-user-test:tagname
+      - name: Run Aqua scanner- trivytestdocker
+        uses: docker://151013160191/trivy-user-test:tagname
         
-      #   with:
-      #     args:  /tmp/.trivy/plugins/aqua/aqua fs --scanners config,vuln,secret .
+        with:
+          args: trivy fs --scanners config,vuln,secret .
           
-      #     # To customize which severities to scan for, add the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          # To customize which severities to scan for, add the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
       #     # To enable SAST scanning, add: --sast
       #     # To enable reachability scanning, add: --reachability
       #     # To enable npm/dotnet non-lock file scanning, add: --package-json / --dotnet-proj
