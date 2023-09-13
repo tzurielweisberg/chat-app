@@ -41,13 +41,13 @@ jobs:
       #     # To enable npm/dotnet non-lock file scanning, add: --package-json / --dotnet-proj
       #   volumes:
       #       - my_docker_volume:/volume_mount
-      #   env:
-      #     AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
-      #     AQUA_SECRET: ${{ secrets.AQUA_SECRET_CNAPP_DEV }}
-      #     GITHUB_TOKEN: ${{ github.token }}
-      #     AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
-      #     CSPM_URL: https://stage.api.cloudsploit.com
-      #     TRIVY_RUN_AS_PLUGIN: 'aqua'
+        env:
+          AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
+          AQUA_SECRET: ${{ secrets.AQUA_SECRET_CNAPP_DEV }}
+          GITHUB_TOKEN: ${{ github.token }}
+          AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+          CSPM_URL: https://stage.api.cloudsploit.com
+          TRIVY_RUN_AS_PLUGIN: 'aqua'
           # For http/https proxy configuration add env vars: HTTP_PROXY/HTTPS_PROXY, CA-CRET (path to CA certificate)
 
 #       - name: Run Trivy vulnerability scanner in IaC mode
