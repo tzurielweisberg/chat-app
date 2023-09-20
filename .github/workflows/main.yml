@@ -30,7 +30,7 @@ jobs:
   #               trivy fs --scanners config,vuln,secret .
 
       - name: Run Aqua scanner- trivytestdocker
-        uses: docker://151013160191/trivy-user-test:tagname
+        uses: docker://aquasec/aqua-scanner:amd64-limited
         
         with:
            args: trivy fs --scanners config,vuln,secret .
