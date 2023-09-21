@@ -3,8 +3,7 @@ on:
   push:
     branches:
       - master
-    paths:
-    - MyFirstFolder
+
 jobs:
   aqua: 
     name: Trivy
