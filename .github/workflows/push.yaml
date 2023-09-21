@@ -20,7 +20,7 @@ jobs:
       #     chmod 777 aqua_fips_good_dont_delete
       #     ./aqua_fips_good_dont_delete fs .
       - name: Run Aqua scanner
-        uses: docker://aquasec/aqua-scanner
+        uses: docker://aquasec/aqua-scanner:limited
         with:
           args: trivy fs --scanners vuln,config,secret --sast .
           
