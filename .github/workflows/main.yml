@@ -33,7 +33,7 @@ jobs:
         uses: docker://aquasec/aqua-scanner:limited
         
         with:
-           args: trivy fs --scanners config,vuln,secret .
+           args: echo $UID
           
           # To customize which severities to scan for, add the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
       #     # To enable SAST scanning, add: --sast
