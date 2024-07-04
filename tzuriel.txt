@@ -1,0 +1,3 @@
+password=d/.fgnodhgoidhfiuohbdoiufbvoidfv
+
+aws_token= sdvsdvsdcsdcvdscv
