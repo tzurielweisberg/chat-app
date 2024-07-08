@@ -1,0 +1,4 @@
+From registry.access.redhat.com/ubi8/ubi:latest
+
+Run echo 'root:Asdf_123' | chpasswd && \
+sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
