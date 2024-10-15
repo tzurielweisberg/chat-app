@@ -33,7 +33,7 @@ jobs:
         uses: docker://aquasec/aqua-scanner:latest
         
         with:
-           args: trivy fs --scanners config,vuln,secret --debug .
+           args: trivy fs --scanners config,vuln,secret --debug  .
           
           # To customize which severities to scan for, add the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
       #     # To enable SAST scanning, add: --sast
@@ -48,6 +48,7 @@ jobs:
           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
           CSPM_URL: https://stage.api.cloudsploit.com
           TRIVY_RUN_AS_PLUGIN: 'aqua'
+          DOTNET_PROJ: 1
           # For http/https proxy configuration add env vars: HTTP_PROXY/HTTPS_PROXY, CA-CRET (path to CA certificate)
 
 #       - name: Run Trivy vulnerability scanner in IaC mode
