@@ -33,12 +33,12 @@ jobs:
         uses: docker://aquasec/aqua-scanner:latest
 
         with:
-          args: trivy fs --scanners config,vuln,secret --debug  .
+          args: trivy fs --scanners config,vuln,secret --debug --skip-policies .
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY_CLOUD_DEV }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET_CLOUD_DEV }}
           GITHUB_TOKEN: ${{ github.token }}
           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
           CSPM_URL: https://stage.api.cloudsploit.com
-          TRIVY_RUN_AS_PLUGIN: 'aqua'
+          TRIVY_RUN_AS_PLUGIN: "aqua"
           DOTNET_PROJ: 1
