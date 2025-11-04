@@ -29,6 +29,7 @@ jobs:
           trivyVersion=0.62.0
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
           ./trivy plugin install github.com/tzurielweisberg/plugin-version
+	  export TRIVY_RUN_AS_PLUGIN=aqua
           ./trivy fs --debug --scanners secret .
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
