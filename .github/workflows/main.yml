@@ -60,20 +60,19 @@ jobs:
 # #           format: 'table'
 # #           # Customizing which severities are scanned for is done by adding the following flag: severity: 'UNKNOWN','LOW','MEDIUM','HIGH','CRITICAL'
           
- 
-#         run: |
-#           trivyVersion=0.32.0
-#           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
-#           ./trivy plugin install github.com/tzurielweisberg/plugin-version
-#           ./trivy fs --debug   --scanners secret --package-json .
+      - name: trivy with 
+          
+        run: |
+            trivyVersion=0.32.0
+            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
+            ./trivy plugin install github.com/tzurielweisberg/plugin-version
+            ./trivy fs --debug   --scanners secret --package-json .
 
-#         env:
-# #           AQUA_KEY: b3L9KDF8q9u0C9PG46Ogub
-# #           AQUA_SECRET: IvApjjTavkLcaJeAXpLfzmymtF9tDIB1xim
-#           AQUA_KEY: ${{secrets.AQUA_KEY}}
-#           AQUA_SECRET: ${{secrets.AQUA_SECRET}}
-#           GITHUB_TOKEN: ${{secrets.GH_TOKEN}} #${{ github.token }}
-#           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
-#           CSPM_URL: https://stage.api.cloudsploit.com
-#           TRIVY_RUN_AS_PLUGIN: 'aqua'
+        env:
+            AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
+            AQUA_SECRET: ${{secrets.AQUA_SECRET_CNAPP_DEV}}
+            GITHUB_TOKEN: ${{secrets.GH_TOKEN}} #${{ github.token }}
+            AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+            CSPM_URL: https://stage.api.cloudsploit.com
+            TRIVY_RUN_AS_PLUGIN: 'aqua'
 
