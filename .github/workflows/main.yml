@@ -11,29 +11,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Aqua scanner - trivytestdocker
-        uses: docker://aquasec/aqua-scanner:23-10-testing
-        with:
-          args: trivy fs --scanners config,vuln,secret --debug .
-        env:
-          AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
-          AQUA_SECRET: ${{ secrets.AQUA_SECRET_CNAPP_DEV }}
-          GITHUB_TOKEN: ${{ github.token }}
-          AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
-          CSPM_URL: https://stage.api.cloudsploit.com
-          TRIVY_RUN_AS_PLUGIN: 'aqua'
-          DOTNET_PROJ: 1
+#      - name: Run Aqua scanner - trivytestdocker
+ #       uses: docker://aquasec/aqua-scanner:23-10-testing
+  #      with:
+   #       args: trivy fs --scanners config,vuln,secret --debug .
+    #    env:
+     #     AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
+      #    AQUA_SECRET: ${{ secrets.AQUA_SECRET_CNAPP_DEV }}
+       #   GITHUB_TOKEN: ${{ github.token }}
+        #  AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+         # CSPM_URL: https://stage.api.cloudsploit.com
+          #TRIVY_RUN_AS_PLUGIN: 'aqua'
+          #DOTNET_PROJ: 1
 
       - name: Run local trivy scan
         run: |
-          trivyVersion=0.62.0
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v${trivyVersion}
-          ./trivy plugin install github.com/tzurielweisberg/plugin-version
-          TRIVY_RUN_AS_PLUGIN=aqua ./trivy fs --debug --scanners secret .
+          #trivyVersion=0.62.0
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b . v0.62.0
+          trivy plugin install github.com/tzurielweisberg/plugin-version
+          TRIVY_RUN_AS_PLUGIN=aqua trivy fs --debug --scanners secret .
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY_CNAPP_DEV }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET_CNAPP_DEV }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
           CSPM_URL: https://stage.api.cloudsploit.com
-#          TRIVY_RUN_AS_PLUGIN: 'aqua'
+##          TRIVY_RUN_AS_PLUGIN: 'aqua'
